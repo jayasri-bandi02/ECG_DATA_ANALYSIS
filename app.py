@@ -8,11 +8,12 @@ import os
 from PIL import Image
 from numpy import asarray
 import numpy as np
+import tensorflow as tf
+from tensorflow import keras
 from keras.models import load_model
 import cv2
 from flask import Flask,request,render_template
 import traceback
-import tensorflow as tf
 from werkzeug.utils import secure_filename
 from keras import backend as K
 UPLOAD_FOLDER = 'static/uploads/'
@@ -23,7 +24,7 @@ try:
     app = Flask(__name__,template_folder='template')
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     K.clear_session()
-    model = load_model('ecg_model.h5')
+    model = load_model('model/ecg_model.h5')
     graph = tf.get_default_graph()
     def process_image(filename):
         img = cv2.imread(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -70,9 +71,9 @@ try:
         with graph.as_default():
             predictions = model.predict(processed_img)
        
-        print(predictions)
+       
         predictions=change(predictions)
-        print(predictions)
+        
         if predictions[0]==0:
             return render_template('form.html', prediction='Heart Health Analysis: '+'Abnormal!')
         elif predictions[0]==1:
