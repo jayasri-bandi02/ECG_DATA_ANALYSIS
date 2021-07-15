@@ -8,24 +8,23 @@ import os
 from PIL import Image
 from numpy import asarray
 import numpy as np
-import tensorflow as tf
-from tensorflow import keras
-from keras.models import load_model
+#import tensorflow as tf
+from tensorflow.keras.models import load_model
 import cv2
 from flask import Flask,request,render_template
 import traceback
 from werkzeug.utils import secure_filename
-from keras import backend as K
+from tensorflow.keras import backend as K
 UPLOAD_FOLDER = 'static/uploads/'
 global model
-global graph
-	
+#print(tf.__version__)
 try:
+    
     app = Flask(__name__,template_folder='template')
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     K.clear_session()
     model = load_model('model/ecg_model.h5')
-    graph = tf.get_default_graph()
+    #graph = tf.get_default_graph()
     def process_image(filename):
         img = cv2.imread(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         img=img[1300:1600:,120:1900]
@@ -68,10 +67,8 @@ try:
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         process_image(filename)
         processed_img=convert_to_array('final.jpg')
-        with graph.as_default():
-            predictions = model.predict(processed_img)
-       
-       
+        #with graph.as_default():
+        predictions = model.predict(processed_img)
         predictions=change(predictions)
         
         if predictions[0]==0:
