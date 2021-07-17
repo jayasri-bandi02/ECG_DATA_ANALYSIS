@@ -3,5 +3,5 @@ flask
 requests
 numpy
 pandas
-PIL
-cv2
+PILLOW
+opencv-python
