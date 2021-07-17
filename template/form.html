@@ -15,20 +15,14 @@
 padding-top:4px;">ECG Analysis</label></li>
 </ul>
 </div>
-<br><p style="font-size:26px;">An ECG (electrocardiogram) records the electrical activity of your heart at rest. It provides information about your heart rate and rhythm by measuring the electrical activity of the heartbeat. With each beat, an electrical impulse (or “wave”) travels through the heart.An ECG can provide clues about enlargement of the chambers or walls of the heart, heart defects.
+<br><p style="font-size:20px;">An ECG (electrocardiogram) records the electrical activity of your heart at rest. It provides information about your heart rate and rhythm by measuring the electrical activity of the heartbeat. With each beat, an electrical impulse (or “wave”) travels through the heart.An ECG can provide clues about enlargement of the chambers or walls of the heart, heart defects.
 </p>
 <center>
 <form method="post" action="predict" enctype="multipart/form-data">
-<table>
-<th style="font-size:19px;">Check out here!</th>
-<tr>
-<td style="font-size:20px;">Upload your ECG report here:</td>
-<td><input type="file" name="img_file" accept=".jpg"></td>
-</tr><br>
-<tr>
-<td colspan="2"><center><input style="background-color:#EE731D;color:white;width:70px;height:25px;font-size:17px;" type="submit"  value="Analyse"></center></td>
-</tr>
-</table>
+   <center><h3>Check out here!</h3></center>
+   <center><h4>Upload your ECG report here</h4></center>
+   <input type="file" name="img_file" accept=".jpg">
+   <center><input style="background-color:#EE731D;color:white;width:70px;height:25px;font-size:17px;" type="submit"  value="Analyse"></center>
 </form>
 <h3 style="color:#4DC3FF">{{ prediction }}<h3>
 </center>

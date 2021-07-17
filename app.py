@@ -23,7 +23,7 @@ try:
     app = Flask(__name__,template_folder='template')
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     K.clear_session()
-    model = load_model('model/ecg_model.h5')
+    model = load_model('model/model.h5')
     #graph = tf.get_default_graph()
     def process_image(filename):
         img = cv2.imread(os.path.join(app.config['UPLOAD_FOLDER'], filename))
